@@ -81,16 +81,39 @@ public class Signer implements Runnable{
     private String pathSignedPDF;
     private Thread t;
     private String threadName;    
-    private String chatID;
+    private String randomID;
     
-    public Signer(String fileName, File f, File theKey, String passphrase, String posisiTTE) throws FileNotFoundException{
-        this.filePDF = f;
-        this.passphrase = passphrase;
-        this.theKey = theKey;
-        this.posisi = posisiTTE;
-        this.fileName = fileName;       
-        
-        if(posisiTTE.equals("invisible")){
+//    public Signer() throws FileNotFoundException{
+//        this.filePDF = f;
+//        this.passphrase = passphrase;
+//        this.theKey = theKey;
+//        this.posisi = posisiTTE;
+//        this.fileName = fileName;       
+//        
+//        if(posisiTTE.equals("invisible")){
+//            this.tampilanTTD = "invisible";
+//        }
+//    }
+    
+    public void setFileName(String name){        
+        this.fileName = name;
+    }
+    
+    public void setFilePDF(File pdf){        
+        this.filePDF = pdf;
+    }
+    
+    public void setTheKey(File key){        
+        this.theKey = key;
+    }
+    
+    public void setPassphrase(String pp){        
+        this.passphrase = pp;
+    }
+    
+    public void setPosisi(String pos){        
+        this.posisi = pos;
+        if(pos.equals("invisible")){
             this.tampilanTTD = "invisible";
         }
     }
@@ -99,8 +122,8 @@ public class Signer implements Runnable{
         return this.notification;
     }
     
-    public void setChatID(Long id){
-        this.chatID = Long.toString(id);
+    public void setRandomID(Long id){
+        this.randomID = Long.toString(id);
     }
     
     public void setOcspServer(String url){
@@ -167,10 +190,10 @@ public class Signer implements Runnable{
       int copyFile = 1;
       File file = new File(dest);
       String[] extension = dest.split(".pdf");
-      dest = extension[0].concat("_" + chatID + "_sign.pdf");
+      dest = extension[0].concat("_" + randomID + "_sign.pdf");
       File target = new File(dest);
       while (target.exists()) {
-        dest = extension[0].concat("_" + chatID + "_sign" + Integer.toString(copyFile) + ".pdf");
+        dest = extension[0].concat("_" + randomID + "_sign" + Integer.toString(copyFile) + ".pdf");
         target = new File(dest);
         copyFile++;
       }
@@ -245,8 +268,7 @@ public class Signer implements Runnable{
             ExternalDigest digest = new BouncyCastleDigest();
 
             MakeSignature.signDetached(appearance, digest, pks, chain, crlList, ocspClient, tsa, estimatedSize, subfilter);
-            System.out.println(chatID + " : Ready to send document");
-            System.out.println(chatID + " path signed doc: " + pathSignedPDF);
+            
         
         } catch (Exception ex) {
             ex.printStackTrace();
