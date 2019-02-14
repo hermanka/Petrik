@@ -1,0 +1,4 @@
+dist/
+store/
+
+.flutter-plugins
