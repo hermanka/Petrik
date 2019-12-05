@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitProject/Petrik/src/id/web/beta/petrik/Signer.java</file>
+            <file>file:/D:/GitProject/Petrik/src/com/petrik/Verifier.java</file>
+            <file>file:/D:/GitProject/Petrik/build.xml</file>
+            <file>file:/D:/GitProject/Petrik/src/com/petrik/Signer.java</file>
         </group>
     </open-files>
 </project-private>

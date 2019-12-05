@@ -105,6 +105,7 @@ public class Signer implements Runnable{
     
     public void setTheKey(File key){        
         this.theKey = key;
+        
     }
     
     public void setPassphrase(String pp){        
